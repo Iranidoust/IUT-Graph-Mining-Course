@@ -59,12 +59,12 @@ The training graph contains **1946 nodes** (938 users + 1008 items) and **52,537
 **User Degree Distribution.**  
 The distribution of user degrees in the bipartite interaction graph shows the number of interactions per user.
 
-![User degree distribution](figures/user_degree_distribution.png)
+![User degree distribution](ProgressReport/figures/user_degree_distribution.png)
 
 **Item Degree Distribution.**  
 The distribution of item degrees illustrates how frequently items are interacted with by users.
 
-![Item degree distribution](figures/item_degree_distribution.png)
+![Item degree distribution](ProgressReport/figures/item_degree_distribution.png)
 
 
 ### Implementation Details
