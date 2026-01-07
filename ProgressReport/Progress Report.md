@@ -100,13 +100,9 @@ We implemented a classical baseline model and multiple GNN-based models.
 
 * **Challenge 1: High sparsity in user–item interactions**
   The interaction matrix remains extremely sparse (≈94% empty), which can weaken signal strength, increase variance in learning, and cause unstable training for graph models.
-  **Resolution:** We applied iterative sparse filtering to remove very low-interaction users/items and used negative sampling with BPR loss to improve ranking learning under implicit feedback.
+  **Resolution:** We applied iterative sparse filtering to remove very low-interaction users/items and used negative sampling with BPR loss to improve ranking learning under implicit feedback
 
-* **Challenge 2: Environment and dependency issues on macOS (PEP 668 and safe loading in PyTorch)**
-  Installing packages system-wide triggered “externally-managed-environment” restrictions, and loading the PyG graph with recent PyTorch defaults caused a weights-only loading error.
-  **Resolution:** We created a dedicated Python virtual environment (venv), installed dependencies inside it, and loaded the PyG graph using `torch.load(..., weights_only=False)` after installing torch-geometric.
-
-* **Challenge 3: GNN performance sensitivity and simplified LightGCN propagation**
+* **Challenge 2: GNN performance sensitivity and simplified LightGCN propagation**
   GNN models are highly sensitive to hyperparameters and correct message normalization. Our simplified LightGCN propagation did not include full degree normalization, which likely contributed to lower performance.
   **Resolution/Next steps:** We will implement degree-normalized propagation for LightGCN, tune embedding size, number of layers, negative ratio, and early stopping to improve generalization and close the gap with MF.
 
