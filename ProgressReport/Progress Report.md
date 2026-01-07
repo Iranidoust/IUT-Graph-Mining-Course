@@ -118,13 +118,9 @@ We implemented a classical baseline model and multiple GNN-based models.
    “LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation,”  
    in *Proceedings of the 43rd International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)*, 2020, pp. 639–648.
 
-2. X. Wang, X. He, X. Wang, F. Feng, and T.-S. Chua,  
-   “Neural Graph Collaborative Filtering,”  
-   in *Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)*, 2019, pp. 165–174.
-
-3. R. van den Berg, T. N. Kipf, and M. Welling,  
-   “Graph Convolutional Matrix Completion,”  
-   *arXiv preprint* arXiv:1706.02263, 2017.
+2. Y. Koren, R. Bell, and C. Volinsky, 
+   “Matrix factorization techniques for recommender systems,” 
+   Computer, vol. 42, no. 8, pp. 30–37, Aug. 2009.
 
 ---
 
