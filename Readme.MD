@@ -1,4 +1,4 @@
-# Graph Mining – Course Repository (4041)
+# Graph Mining – Course Repository (4051)
 
 Welcome to the **Graph Mining (4041)** course repository.  
 This repo serves as a **central hub** for all course materials, datasets, project ideas, and practical sessions related to graph analysis and network science.
