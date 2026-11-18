@@ -5,9 +5,9 @@
 **Instructor:** Dr. Zeinab Maleki  
 
 ## Student Information
-- **Student Name(s):** Hossein Karimy Moghaddam, Hossein Ghorbani Kahrisangi  
-- **Student ID(s):** 40412294, [Insert ID for Hossein Ghorbani]  
-- **Email(s):** h.karimy@ec.iut.ac.ir, [Insert Email 2]  
+- **Student Name(s):** Hossein Karimy Moghaddam, Hossein Ghorbani
+- **Student ID(s):** 40412294, 40411654
+- **Email(s):** h.karimy@ec.iut.ac.ir, h.ghorbanikahrizsangi@ec.iut.ac.ir  
 
 ## Project Title
 Neuro-Symbolic Graph Neural Networks: Enhancing Imbalanced Node Classification via Rule-Based Feature Augmentation and Semantic Graph Rewiring
