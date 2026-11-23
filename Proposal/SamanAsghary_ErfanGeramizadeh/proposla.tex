@@ -1,0 +1,101 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\geometry{
+ a4paper,
+ margin=1in,
+ singlelinecheck=false,
+}
+
+\linespread{1.0} 
+\pagestyle{plain} 
+
+\title{\textbf{Graph Mining Course Project Proposal}}
+\author{Sequential Graph Neural Network for Urban Road Traffic Speed Prediction}
+\date{Submission Date: [December 11, 2025]}
+
+\begin{document}
+
+\maketitle
+
+\section*{Student Information}
+\begin{itemize}
+    \item \textbf{Student Name(s):} [Saman Asghari, Erfan Geramizadeh Naeini]
+    \item \textbf{Student ID(s):} [40117773,40129603]
+\end{itemize}
+\vspace{0.5cm}
+
+\noindent\textbf{Course:} Graph Mining [4041] \\
+\noindent\textbf{Instructor:} Dr. Zeinab Maleki , Dr. Iranidoust
+\vspace{0.5cm}
+
+\section*{Abstract}
+We aim to improve traffic speed prediction using a model called the \textbf{Sequential Graph Neural Network (SeqGNN)}.Current methods often focus on how close roads are geographically, but they miss the real cause of congestion: the actual connections between roads (the network topology).Our approach solves this by treating the entire road network and its changing traffic as a \textbf{sequence of graphs} over time. SeqGNN uses a special component, the \textbf{Graph Recurrent Neural Network (GRNN) block}, to handle this graph sequence, combining the power of graph modeling with time series prediction.The goal is to build and test this model using real-world data from Xi'an, China, to show it is more accurate than current prediction techniques.
+
+\section*{Problem and Motivation}
+Accurate traffic prediction is vital for navigation apps and congestion management. Most traditional deep learning models use grid-like images (like CNNs) or time-series (like RNNs) to represent roads, but this is flawed. The true spread of traffic jams follows the \textbf{road network's structure and connectivity}, not just geographic distance. For example, congestion on one road segment immediately affects the next segment it connects to at an intersection. We are motivated to use \textbf{Graph Neural Networks (GNNs)} because they are specifically designed to embed and analyze these complex network topologies. The final challenge is that traffic changes over time, so we need a model that can both read a sequence of past traffic graphs and output a sequence of future traffic graphs.
+
+\section*{Objectives}
+\begin{itemize}
+    \item Define and construct the road network using graph abstractions: the Linkage Attribute Graph (LAG) and the Traffic Speed Graph (TSG).
+    \item Implement the SeqGNN model, focusing on the core Graph Recurrent Neural Network (GRNN) block, which incorporates the Graph Network (GN) block for graph-to-graph processing.
+    \item Integrate both speed data (TSG) and contextual geographical and temporal attributes (LAG) into the Seq2Seq encoder-decoder framework.
+    \item Evaluate SeqGNN's performance against state-of-the-art baselines (e.g., DA-RNN, Seq2Seq with LSTM) using standard traffic prediction metrics (MAE, RMSE, MAPE).
+\end{itemize}
+
+\section*{Related Work}
+Initial prediction efforts used simple time series or statistical methods. The field advanced with deep learning: RNNs (like LSTM) improved temporal modeling, and CNNs used image-like representations for spatial information. The crucial shift came with GNNs , which naturally model topology, providing new ideas for traffic prediction. Our project specifically builds on the Graph Network (GN) framework , which defines a universal "graph-to-graph" module. SeqGNN extends this by embedding the GN module into a recurrent structure (the GRNN block) to solve the unique challenge of predicting graphs across time.
+
+\section*{Proposed Methodology}
+The project will implement and validate the SeqGNN architecture.
+
+\subsubsection*{Dataset(s)}
+We will use the \textbf{real-world road network and speed data from Beilin District, Xi'an City}.
+\begin{itemize}
+    \item \textbf{Size:} Data covers 1102 road segments. We will select a subset of $\sim 132$ road segments with sufficient data for our experiment.
+    \item \textbf{Type:} The road network is modeled as a Linkage Attribute Graph (LAG) where nodes are road segments and edges are direct connections between adjacent segments. Node and edge attributes include segment width, length, direction, intersection type, and traffic lights.
+    \item \textbf{Preprocessing:} Speed data will be aggregated into 5-minute intervals. Historical speeds from 06:00-08:00 (24 intervals) will be the input, and speeds for 08:00-09:00 (12 intervals) will be the output sequence.
+\end{itemize}
+
+\subsubsection*{Techniques and Algorithms}
+\begin{itemize}
+    \item \textbf{GRNN Block:} This is a combination of the GN block and an RNN cell. It processes a hidden state graph $\mathcal{G}_{h}$ and an input graph $\mathcal{G}_{x}$ to produce an output graph $\mathcal{G}_{y}$ and a new hidden state graph $\mathcal{G}_{h}^{\prime}$.
+    \item \textbf{GN Block:} A "graph-to-graph" module that updates node, edge, and global attributes using multi-layer perceptrons (fully connected networks) and an aggregation function (summation operator).
+    \item \textbf{SeqGNN Architecture:} The model uses the GRNN block to construct an encoder-decoder Seq2Seq model. The decoder concatenates the Linkage Attribute Graph (LAG) with the hidden state graph at each step to inject contextual geographical features into the prediction process.
+\end{itemize}
+
+\subsubsection*{Evaluation Plan}
+\begin{itemize}
+    \item \textbf{Metrics}: We will use Mean Absolute Error (MAE), Mean Absolute Percentage Error (MAPE), and Root Mean Square Error (RMSE) to quantify the prediction accuracy.
+    \item \textbf{Baselines}: Comparison against benchmark models: MLP, Nested LSTM (NLSTM), traditional Seq2Seq (with LSTM cells), and Dual-Stage Attention-based RNN (DA-RNN).
+\end{itemize}
+
+\section*{Challenges and Resources}
+\begin{itemize}
+    \item \textbf{Challenge}: The need to handle the graph-to-graph processing within the recurrent structure, requiring careful implementation of the GN and GRNN blocks to ensure isomorphic graph topologies throughout the sequence.
+    \item \textbf{Mitigation}: We will leverage Python libraries (PyTorch/TensorFlow) suitable for GNN implementation.
+\end{itemize}
+\vspace{0.2cm}
+\newpage
+
+\noindent\textbf{Resources}: We will use the paper's figures, such as the architecture diagrams and convergence plots, as benchmarks for validation. A Google search on the paper's title suggests that while no single official repo is listed in the paper, open-source implementations of similar models are available for reference.
+
+\section*{References}
+\begin{itemize}[label={[\arabic*]}]
+    \item Zhipu Xie, Weifeng Lv, Shangfo Huang, Zhilong Lu, Bowen Du, and Runhe Huang. Sequential Graph Neural Network for Urban Road Traffic Speed Prediction. \textit{IEEE Access}, 2019.
+    \item H. Yu et al. Spatiotemporal recurrent convolutional networks for traffic prediction in transportation networks. \textit{Sensors}, 2017.
+    \item P. W. Battaglia et al. Relational inductive biases, deep learning, and graph networks. \textit{arXiv preprint arXiv:1806.01261}, 2018.
+    \item Y. Li et al. Gated graph sequence neural networks. \textit{arXiv preprint arXiv:1511.05493}, 2015.
+    \item I. Sutskever, O. Vinyals, and Q. V. Le. Sequence to sequence learning with neural networks. \textit{Advances in neural information processing systems}, 2014.
+\end{itemize}
+
+\hrule
+\vspace{0.2cm}
+
+
+\end{document}
